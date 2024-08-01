@@ -6,7 +6,7 @@ import 'Screens/View/HomePage.dart';
 import 'Screens/View/SplashScreen.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,16 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context)=>HomeProvider(),
-      builder: (context,child)=>
-          MaterialApp(
-            debugShowCheckedModeBanner: false,
-          routes: {
-              '/' : (context)=> SplashScreen(),
-              '/home' : (context)=> HomeScreen(),
-          },
-          ),
+      create: (context) => WeatherProvider(),
+      builder: (context, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          // '/' : (context) =>  SplashScreen(),
+          '/' : (context) =>  SplashScreen(),
+          // '/' : (context) =>  FavScreen(),
+        },
+      ),
     );
   }
 }
-

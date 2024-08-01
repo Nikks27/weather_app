@@ -1,43 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Api_Helper/Api1_Helper.dart';
 import '../Modal/Weather_Modal.dart';
 
-class HomeProvider extends ChangeNotifier {
-  List weather =[];
+class WeatherProvider extends ChangeNotifier {
+  String search ='surat';
+  ApiHelper apiHelper = ApiHelper();
   WeatherModal? weatherModal;
-  String search = "Surat";
-  int selectedIndex = 0;
+  String weather = '';
 
-  void Searchweather(String search) {
-    this.search  = search;
-    notifyListeners();
-  }
+  List<WeatherModal> wratherList=[];
 
-  void SelectedImage(int index) {
-    selectedIndex = index;
-    notifyListeners();
-  }
-
-
-
-  Future<WeatherModal?> fromMap(String search) async {
-    Map<String, dynamic> data = await ApiHelper.apihelper.fetchApiData(search: search);
+  Future<WeatherModal?> fromMap(String city) async {
+    final data = await apiHelper.fetchApi(search);
     weatherModal = WeatherModal.fromJson(data);
     return weatherModal;
   }
 
-  Future<void> AddToFav(String name,double temp_c,String text)
-  async {
-    String data="$name $temp_c $text";
-    weather.add(data);
-  }
-  getFavouriteWeather()
-  async {
+  void searchCity(String city) {
+    search = city;
     notifyListeners();
   }
-  HomeProvider()
+
+  void addToFavoriteWeather(WeatherModal weather)
   {
-    getFavouriteWeather();
+    wratherList.add(weather);
+  }
+  Future<void> addFavCity(String name,String temp,String )
+  async {
+
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
   }
 }
