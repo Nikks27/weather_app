@@ -11,13 +11,13 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(Duration(seconds: 3),(){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>HomeScreen()));
+      Navigator.of(context).pushNamed('/home');
     });
     return Scaffold(
       body: Center(
         child: Container(
-          height: 300,
-          width: 300,
+          height: 200,
+          width: 200,
           decoration:BoxDecoration(
             // color: Colors.red,
               image: DecorationImage(

@@ -126,7 +126,6 @@ class HomeScreen extends StatelessWidget {
                                         Text('${weather.forecastModal.forecastDay.first.hour.first.temp_c}'+'°C'+' ',style: TextStyle(color: Colors.white,fontSize: 20),),
                                         Container(height: 40,width: 40,decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(weather.currentModal.condition.icon))),)
                                       ],
-
                                     );
                                   }),
                                 ],
@@ -154,7 +153,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 String Day =
-    "https://img.freepik.com/free-photo/beautiful-sunset-lake-filtered-image-processed-vintage_1232-2166.jpg?ga=GA1.2.19654575.1717952195&semt=ais_hybrid";
+    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Ffebruary-weather&psig=AOvVaw2IiVLCP2J6hGLZmwwWOLV5&ust=1722581902093000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCKDvvOSb04cDFQAAAAAdAAAAABAR";
 String Nigth =
-    "https://img.freepik.com/free-photo/starry-sky-town_23-2151642692.jpg?ga=GA1.2.19654575.1717952195&semt=ais_hybrid";
+    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2Flightening-moon-gif-lightening-moon-ship-gifs--676243700274513943%2F&psig=AOvVaw04JgiFlGoVvIrOR9cP22Ae&ust=1722582168373000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJDdkOmc04cDFQAAAAAdAAAAABAR";
 int selectedIndex = 0;
