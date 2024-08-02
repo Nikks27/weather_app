@@ -8,9 +8,7 @@ class WeatherProvider extends ChangeNotifier {
   String search ='surat';
   ApiHelper apiHelper = ApiHelper();
   WeatherModal? weatherModal;
-  String weather = '';
-
-  List<WeatherModal> wratherList=[];
+  List<String> weather = [];
 
   Future<WeatherModal?> fromMap(String city) async {
     final data = await apiHelper.fetchApi(search);
@@ -23,14 +21,23 @@ class WeatherProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addToFavoriteWeather(WeatherModal weather)
-  {
-    wratherList.add(weather);
-  }
-  Future<void> addFavCity(String name,String temp,String )
+  Future<void> addFavCity(String name,String temp,String type)
   async {
-
+    String data = '$name-$temp-$type';
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    weather.add(data);
+    // weather.clear();
+    sharedPreferences.setStringList('weather',weather);
+  }
+  Future<void> getFavouriteWeather()
+  async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    weather = sharedPreferences.getStringList('weather') ?? <String>[];
+    notifyListeners();
+  }
 
+  WeatherProvider()
+  {
+    getFavouriteWeather();
   }
 }

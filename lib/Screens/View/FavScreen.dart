@@ -8,10 +8,9 @@ class FavScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WeatherProvider weatherProviderTrue =
-        Provider.of<WeatherProvider>(context, listen: true);
+    WeatherProvider weatherProviderTrue = Provider.of<WeatherProvider>(context);
     WeatherProvider weatherProviderFalse =
-        Provider.of<WeatherProvider>(context, listen: false);
+    Provider.of<WeatherProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -23,34 +22,51 @@ class FavScreen extends StatelessWidget {
               color: Colors.white, fontWeight: FontWeight.w500, fontSize: 26),
         ),
       ),
-      body: ListView.builder(
-        itemCount: weatherProviderTrue.wratherList.length,
-        itemBuilder: (context, index) => Card(
-          color: Color(0xff87A0C9),
-          child: ListTile(
-            title: Text(
-              weatherProviderTrue.wratherList[index].locationModal.name,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 22),
-            ),
-            subtitle: Text(
-              weatherProviderTrue.wratherList[index].locationModal.country,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 22),
-            ),
-            leading: Text(
-              weatherProviderTrue.wratherList[index].locationModal.region,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 22),
+      body: Column(
+        children: [
+          SizedBox(height: 34,),
+          Expanded(
+            child: ListView.builder(
+              itemCount: weatherProviderTrue.weather.length,
+              itemBuilder: (context, index) {
+                final name = weatherProviderTrue.weather[index]
+                    .split('-')
+                    .sublist(0, 1)
+                    .join('-');
+                final temp = weatherProviderTrue.weather[index]
+                    .split('-')
+                    .sublist(1, 2)
+                    .join('-');
+                final status = weatherProviderTrue.weather[index]
+                    .split('-')
+                    .sublist(2, 3)
+                    .join('-');
+                return Card(
+                  color: Color(0xff87A0C9),
+                  child: ListTile(
+                    // title: Text(weatherProviderTrue.weather[index].split('-').sublist(0,1).join('-'),style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 24),),
+                    //  trailing : Text(weatherProviderTrue.weather[index].split('-').sublist(2,3).join('-'),style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 21),),),
+                    title: Text('${name}',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 24)),
+                    subtitle: Text('${status}',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 21)),
+                    trailing: Text('${temp}°C',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 38)),
+                  ),
+                );
+              },
             ),
           ),
-        ),
+        ],
       ),
     );
   }

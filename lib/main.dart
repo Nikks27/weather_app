@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Screens/Provider/Weather_Provider.dart';
+import 'Screens/View/FavScreen.dart';
 import 'Screens/View/HomePage.dart';
 import 'Screens/View/SplashScreen.dart';
 
@@ -21,6 +22,8 @@ class MyApp extends StatelessWidget {
         routes: {
           // '/' : (context) =>  SplashScreen(),
           '/' : (context) =>  SplashScreen(),
+          '/home' : (context) =>  HomePage(),
+          '/fav' : (context) =>  FavScreen(),
           // '/' : (context) =>  FavScreen(),
         },
       ),
